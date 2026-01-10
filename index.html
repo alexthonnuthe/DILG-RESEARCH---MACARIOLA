@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Barangay Justice Study</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    background: #f3f3f3;
+    color: #1f2a44;
+}
+
+header {
+    background: #0b3c6d;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header img {
+    width: 90px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+h1 {
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.button-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 50px 20px;
+    flex-wrap: wrap;
+}
+
+.shield-button {
+    width: 200px;
+    height: 150px;
+    background: rgba(160,160,160,0.3);
+    clip-path: polygon(50% 0%, 88% 18%, 88% 75%, 50% 100%, 12% 75%, 12% 18%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.shield-button:hover {
+    background: rgba(160,160,160,0.45);
+}
+
+.preview-section {
+    display: flex;
+    gap: 30px;
+    padding: 20px 40px;
+    flex-wrap: wrap;
+}
+
+.slideshow {
+    flex: 1;
+    min-width: 300px;
+}
+
+.slideshow img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.pdf-preview {
+    flex: 1;
+    min-width: 300px;
+}
+
+.pdf-preview iframe {
+    width: 100%;
+    height: 320px;
+    opacity: 0.4;
+    border: 1px solid #ccc;
+}
+
+.content {
+    display: none;
+    padding: 40px;
+}
+
+.content h2 {
+    margin-top: 0;
+}
+
+.content iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.image-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.image-row img {
+    width: 48%;
+    border: 1px solid #ccc;
+}
+
+.pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.pdf-grid a {
+    background: rgba(160,160,160,0.3);
+    padding: 25px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: 1px solid #bbb;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="dilg-logo.png" alt="DILG Logo">
+    <h1>BARANGAY JUSTICE STUDY</h1>
+</header>
+
+<section class="button-section">
+    <div class="shield-button" onclick="openSection('credentials')">
+        Researcher's Credentials
+    </div>
+    <div class="shield-button" onclick="openSection('research')">
+        Research Paper
+    </div>
+    <div class="shield-button" onclick="openSection('gallery')">
+        Data-Gathering Documentation
+    </div>
+</section>
+
+<section class="preview-section">
+    <div class="slideshow">
+        <img id="slideImage" src="gallery1.jpg">
+    </div>
+
+    <div class="pdf-preview">
+        <iframe src="research-main.pdf"></iframe>
+    </div>
+</section>
+
+<section class="content" id="credentials">
+    <h2>About Macariola</h2>
+    <iframe src="credentials.pdf"></iframe>
+
+    <h3>Foundation of his Outstanding Leadership</h3>
+    <div class="image-row">
+        <img src="advocacy1.jpg">
+        <img src="advocacy2.jpg">
+    </div>
+</section>
+
+<section class="content" id="research">
+    <h2>
+        DOCUMENTED CONFLICT CASES IN THE BARANGAYS OF LIBERTAD:
+        TYPES, FREQUENCY, AND RESOLUTION PROCEDURES
+    </h2>
+
+    <div class="pdf-grid">
+        <a href="research1.pdf" target="_blank">Research File 1</a>
+        <a href="research2.pdf" target="_blank">Research File 2</a>
+        <a href="research3.pdf" target="_blank">Research File 3</a>
+        <a href="research4.pdf" target="_blank">Research File 4</a>
+        <a href="research5.pdf" target="_blank">Research File 5</a>
+        <a href="research6.pdf" target="_blank">Research File 6</a>
+    </div>
+</section>
+
+<section class="content" id="gallery">
+    <h2>Documentation</h2>
+    <div class="gallery-grid">
+        <img src="gallery1.jpg"><img src="gallery2.jpg"><img src="gallery3.jpg"><img src="gallery4.jpg">
+        <img src="gallery5.jpg"><img src="gallery6.jpg"><img src="gallery7.jpg"><img src="gallery8.jpg">
+        <img src="gallery9.jpg"><img src="gallery10.jpg"><img src="gallery11.jpg"><img src="gallery12.jpg">
+        <img src="gallery13.jpg"><img src="gallery14.jpg"><img src="gallery15.jpg"><img src="gallery16.jpg">
+        <img src="gallery17.jpg"><img src="gallery18.jpg"><img src="gallery19.jpg"><img src="gallery20.jpg">
+    </div>
+</section>
+
+<script>
+function openSection(id) {
+    document.querySelectorAll('.content').forEach(sec => {
+        sec.style.display = 'none';
+    });
+    document.getElementById(id).style.display = 'block';
+}
+
+let slideIndex = 1;
+setInterval(() => {
+    slideIndex++;
+    if (slideIndex > 20) slideIndex = 1;
+    document.getElementById("slideImage").src = "gallery" + slideIndex + ".jpg";
+}, 3000);
+</script>
+
+</body>
+</html>
