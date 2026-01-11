@@ -14,50 +14,52 @@ body {
     color: #222;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
-    background: #ffffff;
+    background: #fff;
     border-bottom: 1px solid #ddd;
     padding: 15px 40px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
-header img {
-    width: 60px;
-}
+header img { width: 55px; }
+header h1 { font-size: 18px; margin: 0; }
 
-header h1 {
-    font-size: 18px;
-    letter-spacing: 1px;
-    margin: 0;
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero {
     max-width: 1100px;
     margin: 40px auto;
-    padding: 80px 40px;
-    background: #9a9a9a;
-    border-radius: 12px;
+    padding: 90px 40px;
+    border-radius: 14px;
     color: white;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.hero h2 {
-    font-size: 36px;
-    margin-bottom: 15px;
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(55%);
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
 }
 
-.hero p {
-    max-width: 720px;
-    margin: 0 auto 30px;
-    line-height: 1.6;
+.hero-content {
+    position: relative;
+    z-index: 1;
 }
+
+.hero h2 { font-size: 34px; margin-bottom: 15px; }
+.hero p { max-width: 720px; margin: 0 auto 30px; }
 
 .hero-buttons button {
-    padding: 12px 30px;
+    padding: 12px 28px;
     border-radius: 30px;
     border: none;
     font-weight: bold;
@@ -71,7 +73,7 @@ header h1 {
     color: white;
 }
 
-/* ===== FEATURES ===== */
+/* FEATURES */
 .features {
     max-width: 1100px;
     margin: 50px auto;
@@ -81,49 +83,43 @@ header h1 {
     text-align: center;
 }
 
-.features h3 {
-    margin-bottom: 8px;
-    font-size: 18px;
-}
-
-.features p {
-    font-size: 14px;
-    color: #555;
-}
-
-/* ===== CONTENT SECTIONS ===== */
-.content {
-    display: none;
+/* ADVOCACY PREVIEW */
+.advocacy-preview,
+.image-row,
+.gallery-grid {
     max-width: 1100px;
-    margin: 60px auto;
-    padding: 40px;
-    background: white;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
     border-radius: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
 }
 
-.content h2 {
-    margin-top: 0;
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
-}
-
-/* ===== STUDY DESCRIPTION ===== */
+/* CONTENT */
+.content,
 .study-description {
     max-width: 1100px;
     margin: 60px auto;
     padding: 40px;
     background: white;
-    border-radius: 10px;
-    line-height: 1.8;
-    text-align: justify;
+    border-radius: 12px;
 }
 
-/* ===== PDF GRID ===== */
+.content { display: none; }
+
+/* PDF GRID */
 .pdf-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 15px;
-    margin-top: 30px;
 }
 
 .pdf-grid a {
@@ -131,37 +127,28 @@ header h1 {
     padding: 20px 0;
     text-align: center;
     text-decoration: none;
-    color: #000;
     font-weight: bold;
     border-radius: 6px;
+    color: #000;
 }
 
-.pdf-grid a:hover {
-    background: #d2d2d2;
+/* LIGHTBOX */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
-/* ===== IMAGES ===== */
-.credentials-image {
-    width: 100%;
-    max-width: 800px;
-    border: 1px solid #ccc;
-    margin-bottom: 30px;
-}
-
-.image-row,
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-}
-
-.image-row img,
-.gallery-grid img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
     border-radius: 10px;
-    border: 1px solid #ccc;
+    border: none;
+    cursor: default;
 }
 </style>
 </head>
@@ -169,62 +156,47 @@ header h1 {
 <body>
 
 <header>
-    <img src="dilg-logo.png" alt="DILG Logo">
+    <img src="dilg-logo.png">
     <h1>Barangay Justice Study</h1>
 </header>
 
-<section class="hero">
-    <h2>Documented Conflict Cases in Selected Barangays</h2>
-    <p>
-        A descriptive study examining the types, frequency, and resolution
-        procedures of conflicts processed under the Katarungang Pambarangay
-        system in Libertad, Misamis Oriental.
-    </p>
-    <div class="hero-buttons">
-        <button onclick="openSection('research')">View Research</button>
-        <button class="secondary" onclick="openSection('gallery')">View Documentation</button>
+<section class="hero" id="hero">
+    <div class="hero-content">
+        <h2>Documented Conflict Cases in Libertad</h2>
+        <p>
+            A descriptive study examining the types, frequency, and resolution
+            procedures of conflicts processed under the Katarungang Pambarangay system.
+        </p>
+        <div class="hero-buttons">
+            <button onclick="openSection('research')">View Research</button>
+            <button class="secondary" onclick="openSection('credentials')">About Macariola</button>
+        </div>
     </div>
 </section>
 
 <section class="features">
-    <div>
-        <h3>Official Records</h3>
-        <p>Based solely on documented barangay case files</p>
-    </div>
-    <div>
-        <h3>Descriptive Approach</h3>
-        <p>No interviews, surveys, or opinion-based inputs</p>
-    </div>
-    <div>
-        <h3>Resolution Methods</h3>
-        <p>Mediation, conciliation, and arbitration procedures</p>
-    </div>
-    <div>
-        <h3>Community Focus</h3>
-        <p>Selected barangays of Libertad, Misamis Oriental</p>
-    </div>
+    <div><h3>Official Records</h3><p>Barangay case files only</p></div>
+    <div><h3>Descriptive Study</h3><p>No surveys or interviews</p></div>
+    <div><h3>Resolution Methods</h3><p>Mediation and conciliation</p></div>
+    <div><h3>Community Focus</h3><p>Libertad, Misamis Oriental</p></div>
+</section>
+
+<section class="advocacy-preview">
+    <img src="advocacy1.jpg">
+    <img src="advocacy2.jpg">
 </section>
 
 <section class="study-description">
     <p>
-        This study focuses on conflict cases officially recorded and processed
-        in selected barangays of the Municipality of Libertad, Misamis Oriental,
-        namely Barangays Dulong, Taytayan, Poblacion, and Lubluban.
-    </p>
-    <p>
-        It examines the nature of disputes, their frequency, and the procedures
-        employed by barangay officials in resolving these conflicts under the
-        Katarungang Pambarangay system.
-    </p>
-    <p>
-        All findings are derived exclusively from existing barangay records such
-        as blotter entries, mediation logs, and settlement documents.
+        This study examines conflict cases officially recorded in selected barangays
+        of Libertad, Misamis Oriental using existing barangay documentation.
     </p>
 </section>
 
 <section class="content" id="credentials">
-    <h2>Researcher's Credentials</h2>
-    <img src="credentials.png" class="credentials-image">
+    <h2>About Macariola</h2>
+    <img src="credentials.png">
+    <h3 style="text-align:center;">Foundation of Leadership</h3>
     <div class="image-row">
         <img src="advocacy1.jpg">
         <img src="advocacy2.jpg">
@@ -234,31 +206,72 @@ header h1 {
 <section class="content" id="research">
     <h2>Research Paper Sections</h2>
     <div class="pdf-grid">
-        <a href="research1.pdf" target="_blank">1</a>
-        <a href="research2.pdf" target="_blank">2</a>
-        <a href="research3.pdf" target="_blank">3</a>
-        <a href="research4.pdf" target="_blank">4</a>
-        <a href="research5.pdf" target="_blank">5</a>
-        <a href="research6.pdf" target="_blank">6</a>
+        <a href="research1.pdf">1</a>
+        <a href="research2.pdf">2</a>
+        <a href="research3.pdf">3</a>
+        <a href="research4.pdf">4</a>
+        <a href="research5.pdf">5</a>
+        <a href="research6.pdf">6</a>
     </div>
 </section>
 
-<section class="content" id="gallery">
-    <h2>Data-Gathering Documentation</h2>
-    <div class="gallery-grid">
-        <img src="gallery1.jpg"><img src="gallery2.jpg"><img src="gallery3.jpg"><img src="gallery4.jpg">
-        <img src="gallery5.jpg"><img src="gallery6.jpg"><img src="gallery7.jpg"><img src="gallery8.jpg">
-        <img src="gallery9.jpg"><img src="gallery10.jpg"><img src="gallery11.jpg"><img src="gallery12.jpg">
-        <img src="gallery13.jpg"><img src="gallery14.jpg"><img src="gallery15.jpg"><img src="gallery16.jpg">
-        <img src="gallery17.jpg"><img src="gallery18.jpg"><img src="gallery19.jpg"><img src="gallery20.jpg">
-    </div>
-</section>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <img id="lightbox-img">
+</div>
 
 <script>
+/* SECTION TOGGLE */
 function openSection(id) {
-    document.querySelectorAll('.content').forEach(sec => sec.style.display = 'none');
+    document.querySelectorAll('.content').forEach(s => s.style.display = 'none');
     document.getElementById(id).style.display = 'block';
+    window.scrollTo({ top: document.getElementById(id).offsetTop - 20, behavior: 'smooth' });
 }
+
+/* HERO SLIDESHOW WITH FADE */
+const hero = document.querySelector('.hero');
+let heroIndex = 1;
+let heroBefore = hero.querySelector('::before');
+
+function setHeroImage(index) {
+    hero.style.setProperty('--bg', `url('gallery${index}.jpg')`);
+    hero.style.backgroundImage = `url('gallery${index}.jpg')`;
+    hero.style.setProperty('--fade', 1);
+    hero.style.setProperty('--fade', 0);
+    hero.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('gallery${index}.jpg')`;
+}
+
+setHeroImage(1);
+
+setInterval(() => {
+    heroIndex = heroIndex < 7 ? heroIndex + 1 : 1;
+    setHeroImage(heroIndex);
+}, 4000);
+
+/* SWIPE SUPPORT */
+let startX = 0;
+hero.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+hero.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) heroIndex++;
+    if (endX - startX > 50) heroIndex--;
+    if (heroIndex > 7) heroIndex = 1;
+    if (heroIndex < 1) heroIndex = 7;
+    setHeroImage(heroIndex);
+});
+
+/* LIGHTBOX */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll("img").forEach(img => {
+    img.onclick = () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+    };
+});
+
+lightbox.onclick = () => lightbox.style.display = "none";
 </script>
 
 </body>
