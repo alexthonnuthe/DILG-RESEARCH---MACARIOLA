@@ -22,16 +22,8 @@ header{
     justify-content:space-between;
     padding:15px 40px;
 }
-
-header img{
-    width:70px;
-    height:auto;
-}
-
-header h2{
-    margin:0;
-    font-size:18px;
-}
+header img{width:70px;}
+header h2{margin:0;font-size:18px;}
 
 /* HERO */
 .hero{
@@ -43,29 +35,21 @@ header h2{
     text-align:center;
     color:#fff;
 }
-
-.hero p{
-    max-width:750px;
-    margin:0 auto 30px;
-}
-
+.hero p{max-width:750px;margin:0 auto 30px;}
 .hero-buttons{
     display:flex;
     gap:20px;
     justify-content:center;
 }
-
 .hero-buttons button{
     padding:12px 28px;
     border-radius:30px;
     border:1px solid #fff;
     background:#fff;
-    color:#333;
     font-weight:bold;
     cursor:pointer;
 }
-
-.hero-buttons button.secondary{
+.hero-buttons .secondary{
     background:transparent;
     color:#fff;
 }
@@ -80,26 +64,23 @@ header h2{
     text-align:center;
 }
 
-/* INTRO TEXT */
+/* INTRO */
 .intro-text{
     max-width:900px;
     margin:40px auto;
     background:#fff;
     padding:35px;
     border-radius:14px;
-    line-height:1.8;
 }
 
 /* SLIDESHOW */
 .study-slideshow{
     max-width:1100px;
-    margin:30px auto 50px;
-    aspect-ratio:21 / 9;
+    margin:30px auto;
+    aspect-ratio:21/9;
     overflow:hidden;
     border-radius:14px;
-    background:#000;
 }
-
 .study-slideshow img{
     width:100%;
     height:100%;
@@ -109,73 +90,73 @@ header h2{
 /* CONTEXT */
 .study-context{
     max-width:900px;
-    margin:0 auto 80px;
+    margin:30px auto;
     background:#fff;
     padding:45px;
     border-radius:14px;
     line-height:1.9;
 }
 
-/* RESEARCH SECTION */
+/* RESEARCH */
 #research{
     max-width:900px;
-    margin:60px auto 100px;
+    margin:60px auto;
     background:#fff;
     padding:45px;
     border-radius:14px;
 }
-
 .pdf-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
     gap:15px;
     margin-top:25px;
 }
-
 .pdf-grid a{
     background:#4f5f46;
     color:#fff;
-    text-align:center;
     padding:22px 0;
+    text-align:center;
     text-decoration:none;
-    font-weight:bold;
     border-radius:10px;
+    font-weight:bold;
+}
+.research-leader{
+    margin-top:30px;
+    text-align:center;
+    font-style:italic;
+    font-weight:bold;
 }
 
 /* ABOUT */
 #about{
     display:none;
     max-width:900px;
-    margin:40px auto 100px;
+    margin:60px auto;
     background:#fff;
-    padding:40px;
+    padding:45px;
     border-radius:14px;
 }
-
 #about img.credentials{
     width:100%;
     height:auto;
     margin-bottom:30px;
 }
-
 .foundation{
     text-align:center;
     font-weight:bold;
     margin-bottom:25px;
 }
-
 .foundation-images{
     display:flex;
     gap:20px;
     flex-wrap:wrap;
 }
-
 .foundation-images img{
     width:48%;
     border-radius:10px;
 }
 
-/* UTIL */
+/* UTILITY */
 .hidden{display:none;}
 </style>
 </head>
@@ -190,10 +171,9 @@ header h2{
 <section class="hero">
     <h1>Documented Conflict Cases in Libertad</h1>
     <p>
-        A descriptive study examining the types, frequency, and resolution procedures of conflicts
-        processed under the Katarungang Pambarangay system.
+        A descriptive study examining the types, frequency, and resolution procedures
+        of conflicts processed under the Katarungang Pambarangay system.
     </p>
-
     <div class="hero-buttons">
         <button onclick="openResearch()">View Research</button>
         <button class="secondary" onclick="openAbout()">About Macariola</button>
@@ -218,15 +198,13 @@ header h2{
 
 <section class="study-context" id="context">
 <p>
-Conflicts within communities are a normal aspect of everyday social life. Barangay-level
-documentation and mediation ensure transparency, accountability, and peace.
+Conflicts within communities are a normal aspect of everyday social life and require
+effective barangay-level dispute resolution.
 </p>
 </section>
 
-<!-- RESEARCH -->
 <section id="research">
 <h2>Research Paper</h2>
-
 <div class="pdf-grid">
     <a href="research1.pdf" target="_blank">1</a>
     <a href="research2.pdf" target="_blank">2</a>
@@ -235,9 +213,11 @@ documentation and mediation ensure transparency, accountability, and peace.
     <a href="research5.pdf" target="_blank">5</a>
     <a href="research6.pdf" target="_blank">6</a>
 </div>
+<div class="research-leader">
+    Alexthon Macariola, Research Leader
+</div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
     <img src="credentials.png" class="credentials">
     <div class="foundation">Foundation of Leadership</div>
@@ -249,22 +229,24 @@ documentation and mediation ensure transparency, accountability, and peace.
 
 <script>
 /* SLIDESHOW */
-let i=1;
+let s=1;
 setInterval(()=>{
     const img=document.getElementById("slideshowImg");
     if(!img) return;
-    i=i<7?i+1:1;
-    img.src="gallery"+i+".jpg";
+    s=s<7?s+1:1;
+    img.src="gallery"+s+".jpg";
 },4000);
 
 function openAbout(){
     document.getElementById("about").style.display="block";
+    document.getElementById("research").classList.add("hidden");
     document.getElementById("slideshow").classList.add("hidden");
     document.getElementById("context").classList.add("hidden");
 }
 
 function openResearch(){
     document.getElementById("about").style.display="none";
+    document.getElementById("research").classList.remove("hidden");
     document.getElementById("slideshow").classList.remove("hidden");
     document.getElementById("context").classList.remove("hidden");
     document.getElementById("research").scrollIntoView({behavior:"smooth"});
