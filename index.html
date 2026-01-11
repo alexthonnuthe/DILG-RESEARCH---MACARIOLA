@@ -9,14 +9,14 @@
 
 body {
     margin: 0;
-    font-family: "Georgia", serif;
+    font-family: Georgia, serif;
     background: #f4f4f4;
     color: #222;
 }
 
-/* ===== HEADER (FIXED COLOR + LOGO) ===== */
+/* ===== HEADER ===== */
 header {
-    background: #4f5f4a; /* Dark Matte Matcha Green */
+    background: #4f5f4a;
     padding: 14px 32px;
     display: flex;
     align-items: center;
@@ -30,40 +30,20 @@ header img {
 }
 
 header h1 {
-    margin: 0;
+    color: #fff;
     font-size: 18px;
-    color: #ffffff;
-    letter-spacing: 0.5px;
+    margin: 0;
 }
 
-/* ===== HERO WITH CONTAIN SLIDESHOW ===== */
+/* ===== HERO (STATIC) ===== */
 .hero {
     max-width: 1100px;
     margin: 40px auto;
     padding: 90px 40px;
     border-radius: 14px;
+    background: #4f5f4a;
     color: white;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain; /* IMPORTANT FIX */
-    background-color: #4f5f4a;
-    transition: background-image 1s ease-in-out;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    z-index: 0;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
 }
 
 .hero h2 {
@@ -102,35 +82,30 @@ header h1 {
     text-align: center;
 }
 
-/* ===== IMAGE ROWS ===== */
-.image-row,
-.preview-row {
-    max-width: 1100px;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.image-row img,
-.preview-row img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-}
-
 /* ===== STUDY DESCRIPTION ===== */
 .study-description {
     max-width: 1100px;
-    margin: 60px auto;
+    margin: 60px auto 30px;
     padding: 40px;
     background: white;
     border-radius: 12px;
     line-height: 1.8;
-    text-align: justify;
+}
+
+/* ===== SLIDESHOW (BELOW STUDY TEXT) ===== */
+.study-slideshow {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    height: 260px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+}
+
+.study-slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* SAME AS gallery6.jpg behavior */
 }
 
 /* ===== CONTENT SECTIONS ===== */
@@ -143,48 +118,29 @@ header h1 {
     border-radius: 12px;
 }
 
-/* ===== CREDENTIALS IMAGE (FIXED) ===== */
+/* ===== CREDENTIALS IMAGE ===== */
 .credentials-image {
     width: 100%;
     max-width: 800px;
     height: auto;
-    object-fit: contain; /* IMPORTANT FIX */
+    object-fit: contain;
     display: block;
     margin: 0 auto 25px;
     border: 1px solid #ccc;
 }
 
-/* ===== PDF GRID ===== */
-.pdf-grid {
+/* ===== IMAGE GRID ===== */
+.image-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
-.pdf-grid a {
-    background: #e6e6e6;
-    padding: 20px 0;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
-    color: #000;
-}
-
-/* ===== LIGHTBOX ===== */
-.lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+.image-row img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 </style>
 </head>
@@ -196,17 +152,15 @@ header h1 {
     <h1>Barangay Justice Study</h1>
 </header>
 
-<section class="hero" id="hero">
-    <div class="hero-content">
-        <h2>Documented Conflict Cases in Libertad</h2>
-        <p>
-            A descriptive study examining the types, frequency, and resolution
-            procedures of conflicts processed under the Katarungang Pambarangay system.
-        </p>
-        <div class="hero-buttons">
-            <button onclick="openSection('research')">View Research</button>
-            <button class="secondary" onclick="openSection('credentials')">About Macariola</button>
-        </div>
+<section class="hero">
+    <h2>Documented Conflict Cases in Libertad</h2>
+    <p>
+        A descriptive study examining the types, frequency, and resolution procedures
+        of conflicts processed under the Katarungang Pambarangay system.
+    </p>
+    <div class="hero-buttons">
+        <button onclick="openSection('main')">View Research</button>
+        <button class="secondary" onclick="openSection('credentials')">About Macariola</button>
     </div>
 </section>
 
@@ -217,80 +171,55 @@ header h1 {
     <div><h3>Community Focus</h3><p>Libertad, Misamis Oriental</p></div>
 </section>
 
-<!-- FIXED IMAGE PREVIEW -->
-<section class="preview-row">
-    <img src="gallery6.jpg">
-    <img src="gallery2.jpg">
+<!-- MAIN STUDY VIEW -->
+<section id="main">
+
+    <section class="study-description">
+        <p>
+            This study examines conflict cases officially recorded in selected barangays
+            of Libertad, Misamis Oriental using existing barangay documentation.
+        </p>
+    </section>
+
+    <!-- SLIDESHOW BELOW STUDY TEXT -->
+    <section class="study-slideshow" id="studySlideshow">
+        <img id="slideshowImg" src="gallery1.jpg">
+    </section>
+
 </section>
 
-<section class="study-description">
-    <p>
-        This study examines conflict cases officially recorded in selected barangays
-        of Libertad, Misamis Oriental using existing barangay documentation.
-    </p>
-</section>
-
+<!-- ABOUT MACARIOLA -->
 <section class="content" id="credentials">
     <h2>About Macariola</h2>
     <img src="credentials.png" class="credentials-image">
+
     <h3 style="text-align:center;">Foundation of Leadership</h3>
     <div class="image-row">
-        <img src="advocacy1.jpg">
-        <img src="advocacy2.jpg">
+        <img src="gallery6.jpg">
+        <img src="gallery2.jpg">
     </div>
 </section>
-
-<section class="content" id="research">
-    <h2>Research Paper Sections</h2>
-    <div class="pdf-grid">
-        <a href="research1.pdf">1</a>
-        <a href="research2.pdf">2</a>
-        <a href="research3.pdf">3</a>
-        <a href="research4.pdf">4</a>
-        <a href="research5.pdf">5</a>
-        <a href="research6.pdf">6</a>
-    </div>
-</section>
-
-<div class="lightbox" id="lightbox">
-    <img id="lightbox-img">
-</div>
 
 <script>
 /* SECTION TOGGLE */
 function openSection(id) {
-    document.querySelectorAll('.content').forEach(s => s.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-    window.scrollTo({ top: document.getElementById(id).offsetTop - 20, behavior: 'smooth' });
+    document.getElementById("main").style.display = (id === "main") ? "block" : "none";
+    document.getElementById("credentials").style.display = (id === "credentials") ? "block" : "none";
 }
 
-/* HERO SLIDESHOW (CONTAIN) */
-let heroIndex = 1;
-const hero = document.getElementById("hero");
+/* DEFAULT VIEW */
+openSection("main");
 
-function setHeroImage(i) {
-    hero.style.backgroundImage = "url('gallery" + i + ".jpg')";
-}
-
-setHeroImage(1);
+/* SLIDESHOW LOGIC */
+let slideIndex = 1;
+const slideshowImg = document.getElementById("slideshowImg");
 
 setInterval(() => {
-    heroIndex = heroIndex < 7 ? heroIndex + 1 : 1;
-    setHeroImage(heroIndex);
+    if (document.getElementById("main").style.display === "none") return;
+
+    slideIndex = slideIndex < 7 ? slideIndex + 1 : 1;
+    slideshowImg.src = "gallery" + slideIndex + ".jpg";
 }, 4000);
-
-/* LIGHTBOX */
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-
-document.querySelectorAll("img").forEach(img => {
-    img.onclick = () => {
-        lightbox.style.display = "flex";
-        lightboxImg.src = img.src;
-    };
-});
-
-lightbox.onclick = () => lightbox.style.display = "none";
 </script>
 
 </body>
