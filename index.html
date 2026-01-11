@@ -14,20 +14,29 @@ body {
     color: #222;
 }
 
-/* HEADER */
+/* ===== HEADER (FIXED COLOR + LOGO) ===== */
 header {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    padding: 15px 40px;
+    background: #4f5f4a; /* Dark Matte Matcha Green */
+    padding: 14px 32px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
-header img { width: 55px; }
-header h1 { font-size: 18px; margin: 0; }
+header img {
+    max-height: 60px;
+    height: auto;
+    width: auto;
+}
 
-/* HERO */
+header h1 {
+    margin: 0;
+    font-size: 18px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+/* ===== HERO WITH CONTAIN SLIDESHOW ===== */
 .hero {
     max-width: 1100px;
     margin: 40px auto;
@@ -37,16 +46,18 @@ header h1 { font-size: 18px; margin: 0; }
     text-align: center;
     position: relative;
     overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /* IMPORTANT FIX */
+    background-color: #4f5f4a;
+    transition: background-image 1s ease-in-out;
 }
 
-.hero::before {
+.hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(55%);
-    transition: opacity 1s ease-in-out;
+    background: rgba(0,0,0,0.35);
     z-index: 0;
 }
 
@@ -55,16 +66,24 @@ header h1 { font-size: 18px; margin: 0; }
     z-index: 1;
 }
 
-.hero h2 { font-size: 34px; margin-bottom: 15px; }
-.hero p { max-width: 720px; margin: 0 auto 30px; }
+.hero h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+}
 
 .hero-buttons button {
-    padding: 12px 28px;
+    padding: 12px 26px;
     border-radius: 30px;
     border: none;
     font-weight: bold;
     cursor: pointer;
-    margin: 0 8px;
+    margin: 0 6px;
 }
 
 .hero-buttons .secondary {
@@ -73,7 +92,7 @@ header h1 { font-size: 18px; margin: 0; }
     color: white;
 }
 
-/* FEATURES */
+/* ===== FEATURES ===== */
 .features {
     max-width: 1100px;
     margin: 50px auto;
@@ -83,18 +102,18 @@ header h1 { font-size: 18px; margin: 0; }
     text-align: center;
 }
 
-/* ADVOCACY PREVIEW */
-.advocacy-preview,
+/* ===== IMAGE ROWS ===== */
 .image-row,
-.gallery-grid {
+.preview-row {
     max-width: 1100px;
     margin: 40px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
-img {
+.image-row img,
+.preview-row img {
     width: 100%;
     height: 220px;
     object-fit: cover;
@@ -103,9 +122,20 @@ img {
     cursor: pointer;
 }
 
-/* CONTENT */
-.content,
+/* ===== STUDY DESCRIPTION ===== */
 .study-description {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* ===== CONTENT SECTIONS ===== */
+.content {
+    display: none;
     max-width: 1100px;
     margin: 60px auto;
     padding: 40px;
@@ -113,9 +143,18 @@ img {
     border-radius: 12px;
 }
 
-.content { display: none; }
+/* ===== CREDENTIALS IMAGE (FIXED) ===== */
+.credentials-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    object-fit: contain; /* IMPORTANT FIX */
+    display: block;
+    margin: 0 auto 25px;
+    border: 1px solid #ccc;
+}
 
-/* PDF GRID */
+/* ===== PDF GRID ===== */
 .pdf-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -132,7 +171,7 @@ img {
     color: #000;
 }
 
-/* LIGHTBOX */
+/* ===== LIGHTBOX ===== */
 .lightbox {
     position: fixed;
     inset: 0;
@@ -146,9 +185,6 @@ img {
 .lightbox img {
     max-width: 90%;
     max-height: 90%;
-    border-radius: 10px;
-    border: none;
-    cursor: default;
 }
 </style>
 </head>
@@ -156,7 +192,7 @@ img {
 <body>
 
 <header>
-    <img src="dilg-logo.png">
+    <img src="dilg-logo.png" alt="DILG Logo">
     <h1>Barangay Justice Study</h1>
 </header>
 
@@ -181,9 +217,10 @@ img {
     <div><h3>Community Focus</h3><p>Libertad, Misamis Oriental</p></div>
 </section>
 
-<section class="advocacy-preview">
-    <img src="advocacy1.jpg">
-    <img src="advocacy2.jpg">
+<!-- FIXED IMAGE PREVIEW -->
+<section class="preview-row">
+    <img src="gallery6.jpg">
+    <img src="gallery2.jpg">
 </section>
 
 <section class="study-description">
@@ -195,7 +232,7 @@ img {
 
 <section class="content" id="credentials">
     <h2>About Macariola</h2>
-    <img src="credentials.png">
+    <img src="credentials.png" class="credentials-image">
     <h3 style="text-align:center;">Foundation of Leadership</h3>
     <div class="image-row">
         <img src="advocacy1.jpg">
@@ -215,7 +252,6 @@ img {
     </div>
 </section>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
     <img id="lightbox-img">
 </div>
@@ -228,17 +264,12 @@ function openSection(id) {
     window.scrollTo({ top: document.getElementById(id).offsetTop - 20, behavior: 'smooth' });
 }
 
-/* HERO SLIDESHOW WITH FADE */
-const hero = document.querySelector('.hero');
+/* HERO SLIDESHOW (CONTAIN) */
 let heroIndex = 1;
-let heroBefore = hero.querySelector('::before');
+const hero = document.getElementById("hero");
 
-function setHeroImage(index) {
-    hero.style.setProperty('--bg', `url('gallery${index}.jpg')`);
-    hero.style.backgroundImage = `url('gallery${index}.jpg')`;
-    hero.style.setProperty('--fade', 1);
-    hero.style.setProperty('--fade', 0);
-    hero.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('gallery${index}.jpg')`;
+function setHeroImage(i) {
+    hero.style.backgroundImage = "url('gallery" + i + ".jpg')";
 }
 
 setHeroImage(1);
@@ -247,18 +278,6 @@ setInterval(() => {
     heroIndex = heroIndex < 7 ? heroIndex + 1 : 1;
     setHeroImage(heroIndex);
 }, 4000);
-
-/* SWIPE SUPPORT */
-let startX = 0;
-hero.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-hero.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) heroIndex++;
-    if (endX - startX > 50) heroIndex--;
-    if (heroIndex > 7) heroIndex = 1;
-    if (heroIndex < 1) heroIndex = 7;
-    setHeroImage(heroIndex);
-});
 
 /* LIGHTBOX */
 const lightbox = document.getElementById("lightbox");
