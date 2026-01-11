@@ -10,6 +10,7 @@ body{
     font-family:"Times New Roman", serif;
     background:#f4f4f4;
     color:#222;
+    scroll-behavior:smooth;
 }
 
 /* HEADER */
@@ -30,7 +31,6 @@ header img{
 header h2{
     margin:0;
     font-size:18px;
-    letter-spacing:1px;
 }
 
 /* HERO */
@@ -44,14 +44,9 @@ header h2{
     color:#fff;
 }
 
-.hero h1{
-    margin-bottom:15px;
-}
-
 .hero p{
     max-width:750px;
     margin:0 auto 30px;
-    line-height:1.6;
 }
 
 .hero-buttons{
@@ -85,10 +80,6 @@ header h2{
     text-align:center;
 }
 
-.features h4{
-    margin-bottom:5px;
-}
-
 /* INTRO TEXT */
 .intro-text{
     max-width:900px;
@@ -115,22 +106,47 @@ header h2{
     object-fit:cover;
 }
 
-/* CONTEXT TEXT */
+/* CONTEXT */
 .study-context{
     max-width:900px;
     margin:0 auto 80px;
-    background:#ffffff;
+    background:#fff;
     padding:45px;
     border-radius:14px;
     line-height:1.9;
-    font-size:16px;
 }
 
-/* ABOUT MACARIOLA */
+/* RESEARCH SECTION */
+#research{
+    max-width:900px;
+    margin:60px auto 100px;
+    background:#fff;
+    padding:45px;
+    border-radius:14px;
+}
+
+.pdf-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:15px;
+    margin-top:25px;
+}
+
+.pdf-grid a{
+    background:#4f5f46;
+    color:#fff;
+    text-align:center;
+    padding:22px 0;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:10px;
+}
+
+/* ABOUT */
 #about{
     display:none;
     max-width:900px;
-    margin:40px auto 80px;
+    margin:40px auto 100px;
     background:#fff;
     padding:40px;
     border-radius:14px;
@@ -139,7 +155,6 @@ header h2{
 #about img.credentials{
     width:100%;
     height:auto;
-    display:block;
     margin-bottom:30px;
 }
 
@@ -147,7 +162,6 @@ header h2{
     text-align:center;
     font-weight:bold;
     margin-bottom:25px;
-    font-size:18px;
 }
 
 .foundation-images{
@@ -161,50 +175,36 @@ header h2{
     border-radius:10px;
 }
 
-/* HIDE SLIDESHOW WHEN ABOUT OPEN */
-.hidden{
-    display:none;
-}
+/* UTIL */
+.hidden{display:none;}
 </style>
 </head>
 
 <body>
 
 <header>
-    <img src="dilg-logo.png" alt="DILG Logo">
+    <img src="dilg-logo.png">
     <h2>Barangay Justice Study</h2>
 </header>
 
 <section class="hero">
     <h1>Documented Conflict Cases in Libertad</h1>
     <p>
-        A descriptive study examining the types, frequency, and resolution procedures of
-        conflicts processed under the Katarungang Pambarangay system.
+        A descriptive study examining the types, frequency, and resolution procedures of conflicts
+        processed under the Katarungang Pambarangay system.
     </p>
 
     <div class="hero-buttons">
-        <button onclick="location.href='#research'">View Research</button>
+        <button onclick="openResearch()">View Research</button>
         <button class="secondary" onclick="openAbout()">About Macariola</button>
     </div>
 </section>
 
 <section class="features">
-    <div>
-        <h4>Official Records</h4>
-        <p>Barangay case files only</p>
-    </div>
-    <div>
-        <h4>Descriptive Study</h4>
-        <p>No surveys or interviews</p>
-    </div>
-    <div>
-        <h4>Resolution Methods</h4>
-        <p>Mediation and conciliation</p>
-    </div>
-    <div>
-        <h4>Community Focus</h4>
-        <p>Libertad, Misamis Oriental</p>
-    </div>
+    <div><b>Official Records</b><br>Barangay case files only</div>
+    <div><b>Descriptive Study</b><br>No surveys or interviews</div>
+    <div><b>Resolution Methods</b><br>Mediation and conciliation</div>
+    <div><b>Community Focus</b><br>Libertad, Misamis Oriental</div>
 </section>
 
 <section class="intro-text">
@@ -212,48 +212,35 @@ header h2{
     Misamis Oriental using existing barangay documentation.
 </section>
 
-<!-- SLIDESHOW -->
 <section class="study-slideshow" id="slideshow">
-    <img id="slideshowImg" src="gallery1.jpg" alt="Gallery">
+    <img id="slideshowImg" src="gallery1.jpg">
 </section>
 
-<!-- CONTEXT -->
 <section class="study-context" id="context">
 <p>
-Conflicts within communities are a normal aspect of everyday social life. In barangays,
-residents live close together, share public spaces, and interact regularly. These conditions
-make disputes over family matters, property boundaries, noise disturbances, and interpersonal
-disagreements more likely.
-</p>
-
-<p>
-To address these issues, the Government of the Philippines institutionalized the Katarungang
-Pambarangay (KP) under Republic Act No. 7160 to provide accessible, community-based dispute
-resolution.
-</p>
-
-<p>
-The KP process is led by the Punong Barangay and the Lupon Tagapamayapa, who facilitate
-settlements and ensure proper documentation.
-</p>
-
-<p>
-Programs such as the Lupong Tagapamayapa Incentives Awards (LTIA) highlight best practices
-in documentation and dispute resolution.
-</p>
-
-<p>
-Studying documented conflict cases in the barangays of Libertad provides insight into local
-governance effectiveness and community justice implementation.
+Conflicts within communities are a normal aspect of everyday social life. Barangay-level
+documentation and mediation ensure transparency, accountability, and peace.
 </p>
 </section>
 
-<!-- ABOUT MACARIOLA -->
+<!-- RESEARCH -->
+<section id="research">
+<h2>Research Paper</h2>
+
+<div class="pdf-grid">
+    <a href="research1.pdf" target="_blank">1</a>
+    <a href="research2.pdf" target="_blank">2</a>
+    <a href="research3.pdf" target="_blank">3</a>
+    <a href="research4.pdf" target="_blank">4</a>
+    <a href="research5.pdf" target="_blank">5</a>
+    <a href="research6.pdf" target="_blank">6</a>
+</div>
+</section>
+
+<!-- ABOUT -->
 <section id="about">
-    <img src="credentials.png" class="credentials" alt="Credentials">
-
+    <img src="credentials.png" class="credentials">
     <div class="foundation">Foundation of Leadership</div>
-
     <div class="foundation-images">
         <img src="advocacy1.jpg">
         <img src="advocacy2.jpg">
@@ -262,19 +249,25 @@ governance effectiveness and community justice implementation.
 
 <script>
 /* SLIDESHOW */
-let slideIndex = 1;
-setInterval(() => {
-    const img = document.getElementById("slideshowImg");
+let i=1;
+setInterval(()=>{
+    const img=document.getElementById("slideshowImg");
     if(!img) return;
-    slideIndex = slideIndex < 7 ? slideIndex + 1 : 1;
-    img.src = "gallery" + slideIndex + ".jpg";
-}, 4000);
+    i=i<7?i+1:1;
+    img.src="gallery"+i+".jpg";
+},4000);
 
-/* ABOUT TOGGLE */
 function openAbout(){
     document.getElementById("about").style.display="block";
     document.getElementById("slideshow").classList.add("hidden");
     document.getElementById("context").classList.add("hidden");
+}
+
+function openResearch(){
+    document.getElementById("about").style.display="none";
+    document.getElementById("slideshow").classList.remove("hidden");
+    document.getElementById("context").classList.remove("hidden");
+    document.getElementById("research").scrollIntoView({behavior:"smooth"});
 }
 </script>
 
